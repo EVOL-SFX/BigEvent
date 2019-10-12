@@ -55,7 +55,6 @@
               alert('请完整输入用户名和密码!~');
               return;
             }
-      
             // 3 发送请求
             $.ajax({
               type: 'post',
@@ -75,6 +74,8 @@
                 }
               }
             })
+            $('.input_txt').val('');
+            $('.input_pass').val('');
           });
           </script>
 </body>
