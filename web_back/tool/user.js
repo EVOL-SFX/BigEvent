@@ -17,4 +17,29 @@ var user = {
             success:options.callback
         })
     },
+
+    getInfo:function(options){
+        $.ajax({
+            url:USER_INFO,
+            success:options.callback
+        });
+    },
+
+    info_get:function(options){
+        $.ajax({
+            url:USER_INFO_GET,
+            success:options.callback
+        });
+    },
+
+    info_edit:function(options){
+        $.ajax({
+            type:'post',
+            url:USER_INFO_EDIT,
+            data:options.data,
+            contentType:false,
+            processData:false,
+            success:options.callback
+        });
+    }
 }

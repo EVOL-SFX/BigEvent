@@ -151,14 +151,36 @@
         // 2 给模态框的确认按钮设置点击事件
         $('#exit').on('click', function () {
             user.logout({
-                callback:function(res){
+                callback: function (res) {
                     //检测
-                    if(res.code===200){
+                    if (res.code === 200) {
                         location.href = './login.html';
                     }
                 }
             })
-        })
+        });
+
+         // 制作用户信息展示功能
+         // 1 页面加载时直接请求用户数据
+         // 2 将数据填写到页面的对应位置即可
+
+         user.getInfo({
+             callback:function(res){
+                 //检测
+                 if(res.code===200){
+                     var data = res.data;//获取原有数据
+                    //  修改对应内容
+                    // 左侧菜单中的用户信息
+                    console.log(data);
+                    
+                    $('.user_info img').prop('src',data.user_pic)
+                    .next().text('欢迎  '+data.nickname);
+                    $('.user_center_link img').prop('src',data.user_pic);
+                 }
+             }
+         })
+
+
 
     </script>
 </body>
