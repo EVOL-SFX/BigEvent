@@ -1,0 +1,33 @@
+var article={
+    //获取文章类别 catgory
+    getCate:function(options){
+        $.ajax({
+            url:ARTICLE_CATE_GET,
+            success:options.callback,
+        })
+    },
+    addCate:function(options){
+        $.ajax({
+            type:'post',
+            url:ARTICLE_CATE_ADD,
+            data:options.data,
+            success:options.callback
+        })
+    },
+    editCate:function(options){
+        $.ajax({
+            type:'post',
+            url:ARTICLE_CATE_EDIT,
+            data:options.data,
+            success:options.callback
+        });
+    },
+    delCate:function(options){
+        $.ajax({
+            type:'post',
+            url:ARTICLE_CATE_DEL,
+            data:options.data,
+            success:options.callback
+        })
+    }
+};
