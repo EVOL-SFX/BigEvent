@@ -14,5 +14,5 @@ var ARTICLE_CATE_GET = baseUrl + '/admin/category_search'; // 获取文章分类
 var ARTICLE_CATE_ADD = baseUrl + '/admin/category_add'; // 新增文章分类接口
 var ARTICLE_CATE_EDIT = baseUrl + '/admin/category_edit'; // 编辑文章分类接口
 var ARTICLE_CATE_DEL = baseUrl + '/admin/category_delete'; // 文章删除分类接口
-
+var ARTICLE_CONTENT = baseUrl + '/admin/search'; //文章内容
 
