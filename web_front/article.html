@@ -205,6 +205,32 @@
         <p>电话：0755-****888 粤ICP备*******8号</p>
     </div>
 
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script>
+        var id = location.search.split('=')[1];
+        if (!id) {
+            location.href = './index.html';
+        }
+        axios({
+            method: 'get',
+            url: 'http://localhost:8000/admin/search',
+            params: {
+                id: id
+            }
+        })
+            .then(function (res) {
+                var res = res.data;
+                console.log(res);
+                if(res.code === 200){
+                    $('.article_title').html(res.data.title);
+                    $('.article_info').html(res.data.author+'&nbsp;'+'&nbsp;'+'&nbsp;'+'发布于'+'&nbsp;'+res.data.date+'&nbsp;'+'&nbsp;'+'&nbsp;'+'分类: '+res.data.type+'&nbsp;'+'&nbsp;'+'&nbsp;'+'阅读:'+'('+res.data.read+')'
+                    +'&nbsp;'+'&nbsp;'+'&nbsp;'+'评论:'+ '('+res.data.date+')');
+                    $('.article_con').html('<p>'+res.data.content+'</p>');
+                }     
+            })
+    </script>
+
 </body>
 
 </html>

@@ -39,12 +39,14 @@
                 </ul>
             </div>
             <ul class="left_menu fl">
-                <li><a href="#">最 新</a></li>
+
+                <!-- <li><a href="#">最 新</a></li>
                 <li><a href="#">科 技</a></li>
                 <li><a href="#">股 市</a></li>
                 <li><a href="#">商 品</a></li>
                 <li><a href="#">外 汇</a></li>
-                <li><a href="#">公 司</a></li>
+                <li><a href="#">公 司</a></li> -->
+
             </ul>
             <ul class="right_menu fr">
                 <li><a href="#">科技专题</a></li>
@@ -84,7 +86,7 @@
             </div>
 
             <div class="New">
-            <!-- <div class="common_news_list">
+                <!-- <div class="common_news_list">
                 <a href="#" class="list_pic"><img src="images/pic09.jpg" alt=""></a>
                 <h4><a href="#">亚马逊金融试水中国？背后却是和华尔街的“金融战争” </a></h4>
                 <p>亚马逊抛弃了中国的买家们，却难以割舍庞大的卖家市场，有消息指出亚马逊中国将针对中国庞大的卖家群体推出一项贷款推荐计划。在连续对印度、墨西哥等新兴市场大力推广线上支付服务后，亚马逊金融试水进军中国市场的信号终于被放出。
@@ -143,7 +145,7 @@
                     <b>发布于 2018-08-30 12:18:58</b>
                 </div>
             </div> -->
-        </div>
+            </div>
 
         </div>
         <div class="right_con">
@@ -231,7 +233,7 @@
     <!-- 设置模板 -->
     <script type="text/html" id="article">
         {{each data v i}}
-        <li {{ if i===0 }} class="first" {{ /if }}>
+        <li {{ if i===0}}class="first" {{/if}}>
             <a href="#"><img src="{{v.cover}}" alt=""></a>
             <p>{{v.title}}</p>
         </li>
@@ -253,9 +255,16 @@
         {{/each}}
     </script>
 
+    <script type="text/html" id="category">
+    {{each data v}}
+    <li><a href="./list.html?id={{v.id}}">{{v.name}}</a></li>
+    {{/each}}
+    </script> 
+
 
 
     <script>
+
         // 当前页面是前台页面，文章的数据展示
         // 请求服务端的文章信息
         // 通过模板引擎将数据生成到页面中即可
@@ -278,19 +287,21 @@
                     //   - 结构中只需要5条数据
                     //   - 第一个结构需要单独设置类名
                     var htmlStr = template('article', res);
-                    var htmlStr1 = template('news',res);
+                    var htmlStr1 = template('news', res);
                     $('.focus_list').html(htmlStr);
                     $('.New').html(htmlStr1);
                 }
             });
 
-        // axios({
-        //     method:'get',
-        //     url: 'http://localhost:8000/admin/search',
-        //     params:{
-        //         perpage:5
-        //     }
-        // })
+        axios({
+            method: 'get',
+            url: 'http://localhost:8000/admin/category_search',
+        })
+            .then(function (res) {
+                res = res.data;
+                var htmlStr2 = template('category', res);
+                $('.left_menu').html(htmlStr2);
+            }) 
     </script>
 
 </body>
